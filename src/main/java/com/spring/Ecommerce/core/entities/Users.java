@@ -1,8 +1,12 @@
 package com.spring.Ecommerce.core.entities;
 
-public record Users (Long id,
-        String name,
-        String document,
-        String email,
-        String phone,
-        Payments payments){}
+import com.spring.Ecommerce.core.enums.typeUser;
+
+public record Users(Long id_users,
+                    String name,
+                    String document,
+                    String email,
+                    String phone,
+                    typeUser typeUser,
+                    Payments payments) {
+}
