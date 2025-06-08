@@ -1,6 +1,7 @@
 package com.spring.Ecommerce.core.enums;
 
-public enum typeUser {
+public enum TypeUser {
     CUSTOMER,
+    PARTNER,
     ADMIN
 }

@@ -1,6 +1,6 @@
 package com.spring.Ecommerce.core.enums;
 
-public enum typeProduct {
+public enum TypeProduct {
     Food,
     Toys,
     Drinks,
