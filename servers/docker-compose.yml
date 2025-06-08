@@ -14,5 +14,5 @@ services:
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=12345
-      - POSTGRES_DB=spring_Ecommerce
+      - POSTGRES_DB=springEcommerce
     restart: always
