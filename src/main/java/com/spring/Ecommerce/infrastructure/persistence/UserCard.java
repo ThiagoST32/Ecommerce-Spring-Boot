@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,5 +22,5 @@ public class UserCard {
 
     @OneToOne
     @JoinColumn(name = "id_user_card", referencedColumnName = "id_user")
-    private UsersEntity user;
+    private Users user;
 }
