@@ -3,13 +3,10 @@ spring:
     name: Ecommerce
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/spring_Ecommerce
+    url: jdbc:postgresql://localhost:5432/springEcommerce
     username: admin
     password: 12345
     driver-class-name: org.postgresql.Driver
 
   jpa:
     show-sql: true
-
-  flyway:
-    enabled: true
