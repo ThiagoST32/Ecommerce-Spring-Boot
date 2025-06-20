@@ -20,7 +20,7 @@ public class UserCard {
     private String cardHolderName;
     private String expirationDate;
 
-    @OneToOne
-    @JoinColumn(name = "id_user_card", referencedColumnName = "id_user")
-    private Users user;
+    //@OneToOne
+    //@JoinColumn(name = "id_user_card", referencedColumnName = "id_user")
+    //private Users user;
 }

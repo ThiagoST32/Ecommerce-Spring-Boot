@@ -23,7 +23,8 @@ public class Users {
     private String phone;
     @Enumerated(EnumType.STRING)
     private TypeUser typeUser;
-    @OneToOne
-    @JoinColumn(name = "id_user", referencedColumnName = "id_user_card")
-    private UserCard userCard;
+
+    //@OneToOne
+    //@JoinColumn(name = "id_user", referencedColumnName = "id_user_card")
+    //private UserCard userCard;
 }

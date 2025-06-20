@@ -1,6 +1,7 @@
 package com.spring.Ecommerce.infrastructure.mapper;
 
 import com.spring.Ecommerce.core.entities.User;
+import com.spring.Ecommerce.infrastructure.dto.UpdateUserDTO;
 import com.spring.Ecommerce.infrastructure.dto.UsersEntityDTO;
 import com.spring.Ecommerce.infrastructure.persistence.Users;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,14 @@ public class UserEntityMapper {
                 usersEntityDTO.phone(),
                 usersEntityDTO.typeUser()
                 //usersEntityDTO.userCard()
+        );
+    }
+
+    public User usersUpdated(UpdateUserDTO updateUserDTO){
+        return new User(
+                updateUserDTO.name(),
+                updateUserDTO.email(),
+                updateUserDTO.phone()
         );
     }
 
