@@ -1,5 +1,5 @@
 package com.spring.Ecommerce.core.gateway.UserGateway;
 
 public interface UserDeleteGateway {
-    void execute(int id);
+    void execute(Long id);
 }
