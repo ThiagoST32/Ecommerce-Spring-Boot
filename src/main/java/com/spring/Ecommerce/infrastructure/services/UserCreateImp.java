@@ -1,7 +1,7 @@
 package com.spring.Ecommerce.infrastructure.services;
 
 import com.spring.Ecommerce.core.entities.User;
-import com.spring.Ecommerce.core.gateway.UserCreateGateway;
+import com.spring.Ecommerce.core.gateway.UserGateway.UserCreateGateway;
 import com.spring.Ecommerce.infrastructure.Repositories.UserEntityRepository;
 import com.spring.Ecommerce.infrastructure.mapper.UserEntityMapper;
 import com.spring.Ecommerce.infrastructure.persistence.Users;

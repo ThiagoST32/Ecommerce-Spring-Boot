@@ -1,7 +1,7 @@
 package com.spring.Ecommerce.infrastructure.services;
 
 import com.spring.Ecommerce.core.entities.User;
-import com.spring.Ecommerce.core.gateway.FindUserByDocumentGateway;
+import com.spring.Ecommerce.core.gateway.UserGateway.FindUserByDocumentGateway;
 import com.spring.Ecommerce.infrastructure.Repositories.UserEntityRepository;
 import org.springframework.stereotype.Service;
 

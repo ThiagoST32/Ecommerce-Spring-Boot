@@ -1,9 +1,8 @@
-package com.spring.Ecommerce.infrastructure.controllers;
+package com.spring.Ecommerce.infrastructure.controllers.Users;
 
 import com.spring.Ecommerce.core.entities.User;
 import com.spring.Ecommerce.infrastructure.dto.UsersEntityDTO;
 import com.spring.Ecommerce.infrastructure.mapper.UserEntityMapper;
-import com.spring.Ecommerce.infrastructure.persistence.Users;
 import com.spring.Ecommerce.infrastructure.services.FindUserByDocumentImp;
 import com.spring.Ecommerce.infrastructure.services.UserCreateImp;
 import org.springframework.beans.factory.annotation.Autowired;
