@@ -1,4 +1,4 @@
-package com.spring.Ecommerce.infrastructure.services;
+package com.spring.Ecommerce.infrastructure.services.User;
 
 import com.spring.Ecommerce.core.entities.User;
 import com.spring.Ecommerce.core.gateway.UserGateway.UserCreateGateway;
