@@ -3,12 +3,16 @@ package com.spring.Ecommerce.infrastructure.controllers.Users;
 import com.spring.Ecommerce.core.entities.User;
 import com.spring.Ecommerce.infrastructure.dto.UsersEntityDTO;
 import com.spring.Ecommerce.infrastructure.mapper.UserEntityMapper;
-import com.spring.Ecommerce.infrastructure.services.FindUserByDocumentImp;
-import com.spring.Ecommerce.infrastructure.services.UserCreateImp;
+import com.spring.Ecommerce.infrastructure.services.User.FindUserByDocumentImp;
+import com.spring.Ecommerce.infrastructure.services.User.FindUserByEmailImp;
+import com.spring.Ecommerce.infrastructure.services.User.GetAllUsersImp;
+import com.spring.Ecommerce.infrastructure.services.User.UserCreateImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -17,12 +21,17 @@ public class UsersController {
 
     private final UserCreateImp userCreateImp;
     private final FindUserByDocumentImp findUserByDocumentImp;
+    private final FindUserByEmailImp findUserByEmailImp;
+    private final GetAllUsersImp getAllUsersImp;
+
     private final UserEntityMapper userEntityMapper;
 
     @Autowired
-    public UsersController(UserCreateImp userCreateImp, FindUserByDocumentImp findUserByDocumentImp, UserEntityMapper userEntityMapper) {
+    public UsersController(UserCreateImp userCreateImp, FindUserByDocumentImp findUserByDocumentImp, FindUserByEmailImp findUserByEmailImp, GetAllUsersImp getAllUsersImp, UserEntityMapper userEntityMapper) {
         this.userCreateImp = userCreateImp;
         this.findUserByDocumentImp = findUserByDocumentImp;
+        this.findUserByEmailImp = findUserByEmailImp;
+        this.getAllUsersImp = getAllUsersImp;
         this.userEntityMapper = userEntityMapper;
     }
 
@@ -33,9 +42,19 @@ public class UsersController {
         return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
     }
 
-    @GetMapping("/find/{document}")
+    @GetMapping("/find/byDocument/{document}")
     public ResponseEntity<User> findUserByDocument(@PathVariable String document) {
         return new ResponseEntity<User>(this.findUserByDocumentImp.execute(document), HttpStatus.FOUND);
+    }
+
+    @GetMapping("/find/byEmail/{email}")
+    public ResponseEntity<User> findUserByEmail(@PathVariable String email) {
+        return new ResponseEntity<User>(this.findUserByEmailImp.execute(email), HttpStatus.FOUND);
+    }
+
+    @GetMapping("/find/all")
+    public ResponseEntity<List<User>> getAllUsers(){
+        return new ResponseEntity<List<User>>(this.getAllUsersImp.execute(), HttpStatus.OK);
     }
 
 }
