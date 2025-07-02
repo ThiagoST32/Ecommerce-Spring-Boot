@@ -3,11 +3,17 @@ package com.spring.Ecommerce.infrastructure.mapper;
 import com.spring.Ecommerce.core.entities.User;
 import com.spring.Ecommerce.infrastructure.dto.UpdateUserDTO;
 import com.spring.Ecommerce.infrastructure.dto.UsersEntityDTO;
-import com.spring.Ecommerce.infrastructure.persistence.Users;
+import com.spring.Ecommerce.infrastructure.persistence.UserCardEntity;
+import com.spring.Ecommerce.infrastructure.persistence.UsersEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserEntityMapper {
+    private final UserCardMapper cardMapper;
+
+    public UserEntityMapper(UserCardMapper cardMapper){
+        this.cardMapper = cardMapper;
+    }
 
     public User usersEntity(UsersEntityDTO usersEntityDTO){
         return new User(
@@ -15,8 +21,8 @@ public class UserEntityMapper {
                 usersEntityDTO.document(),
                 usersEntityDTO.email(),
                 usersEntityDTO.phone(),
-                usersEntityDTO.typeUser()
-                //usersEntityDTO.userCard()
+                usersEntityDTO.typeUser(),
+                usersEntityDTO.userCard()
         );
     }
 
@@ -28,25 +34,35 @@ public class UserEntityMapper {
         );
     }
 
-    public Users mapToPersistenceUser(User domainUser){
-        Users persistenceUser = new Users();
-        persistenceUser.setName(domainUser.getName());
-        persistenceUser.setDocument(domainUser.getDocument());
-        persistenceUser.setEmail(domainUser.getEmail());
-        persistenceUser.setPhone(domainUser.getPhone());
-        persistenceUser.setTypeUser(domainUser.getTypeUser());
-        //persistenceUser.setUserCard(domainUser.getUserCard());
-        return persistenceUser;
+    public UsersEntity mapToPersistenceUser(User domainUser, UserCardEntity userCard){
+        return new UsersEntity(
+                domainUser.getName(),
+                domainUser.getDocument(),
+                domainUser.getEmail(),
+                domainUser.getPhone(),
+                domainUser.getTypeUser(),
+                userCard
+        );
     }
 
-    public User mapToDomainsUser(Users persistenceUser) {
+   public UsersEntity mapToPersistenceUser(User domainUser){
+        return new UsersEntity(
+                domainUser.getName(),
+                domainUser.getDocument(),
+                domainUser.getEmail(),
+                domainUser.getPhone(),
+                domainUser.getTypeUser()
+        );
+    }
+
+    public User mapToDomainsUser(UsersEntity persistenceUser) {
         return new User(
                 persistenceUser.getName(),
                 persistenceUser.getDocument(),
                 persistenceUser.getEmail(),
                 persistenceUser.getPhone(),
-                persistenceUser.getTypeUser()
-                //persistenceUser.getUserCard()
+                persistenceUser.getTypeUser(),
+                this.cardMapper.mapToDomainsUserCard(persistenceUser.getUserCard())
         );
     }
 }
