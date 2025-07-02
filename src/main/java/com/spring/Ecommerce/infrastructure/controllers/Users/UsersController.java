@@ -1,12 +1,11 @@
 package com.spring.Ecommerce.infrastructure.controllers.Users;
 
 import com.spring.Ecommerce.core.entities.User;
+import com.spring.Ecommerce.infrastructure.dto.UpdateUserDTO;
 import com.spring.Ecommerce.infrastructure.dto.UsersEntityDTO;
 import com.spring.Ecommerce.infrastructure.mapper.UserEntityMapper;
-import com.spring.Ecommerce.infrastructure.services.User.FindUserByDocumentImp;
-import com.spring.Ecommerce.infrastructure.services.User.FindUserByEmailImp;
-import com.spring.Ecommerce.infrastructure.services.User.GetAllUsersImp;
-import com.spring.Ecommerce.infrastructure.services.User.UserCreateImp;
+import com.spring.Ecommerce.infrastructure.services.User.*;
+import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +22,17 @@ public class UsersController {
     private final FindUserByDocumentImp findUserByDocumentImp;
     private final FindUserByEmailImp findUserByEmailImp;
     private final GetAllUsersImp getAllUsersImp;
+    private final UserUpdateImp userUpdateImp;
 
     private final UserEntityMapper userEntityMapper;
 
     @Autowired
-    public UsersController(UserCreateImp userCreateImp, FindUserByDocumentImp findUserByDocumentImp, FindUserByEmailImp findUserByEmailImp, GetAllUsersImp getAllUsersImp, UserEntityMapper userEntityMapper) {
+    public UsersController(UserCreateImp userCreateImp, FindUserByDocumentImp findUserByDocumentImp, FindUserByEmailImp findUserByEmailImp, GetAllUsersImp getAllUsersImp, UserUpdateImp userUpdateImp, UserEntityMapper userEntityMapper) {
         this.userCreateImp = userCreateImp;
         this.findUserByDocumentImp = findUserByDocumentImp;
         this.findUserByEmailImp = findUserByEmailImp;
         this.getAllUsersImp = getAllUsersImp;
+        this.userUpdateImp = userUpdateImp;
         this.userEntityMapper = userEntityMapper;
     }
 
@@ -55,6 +56,13 @@ public class UsersController {
     @GetMapping("/find/all")
     public ResponseEntity<List<User>> getAllUsers(){
         return new ResponseEntity<List<User>>(this.getAllUsersImp.execute(), HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<User> updateUser(@RequestBody UpdateUserDTO updateUserDTO, @PathVariable long id){
+        User receiverUserToUpdate = this.userEntityMapper.mapUserToUpdatedUserDomain(updateUserDTO);
+        var savedUserUpdated = this.userUpdateImp.execute(receiverUserToUpdate, id);
+        return new ResponseEntity<User>(savedUserUpdated, HttpStatus.OK);
     }
 
 }

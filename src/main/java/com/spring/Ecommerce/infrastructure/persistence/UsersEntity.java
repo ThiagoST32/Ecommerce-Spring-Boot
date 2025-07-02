@@ -45,4 +45,10 @@ public class UsersEntity {
         this.phone = phone;
         this.typeUser = typeUser;
     }
+
+    public UsersEntity(String name, String email, String phone){
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
 }

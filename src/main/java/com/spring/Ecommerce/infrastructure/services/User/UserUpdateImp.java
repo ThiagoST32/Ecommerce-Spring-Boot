@@ -19,10 +19,15 @@ public class UserUpdateImp implements UserUpdateGateway {
         this.repository = repository;
     }
 
+    //Need valid data if is empty / null
     @Override
-    public User execute(User userUpdatedReceive) {
-        UsersEntity updatedUser = this.mapper.mapToPersistenceUser(userUpdatedReceive);
-        this.repository.saveAndFlush(updatedUser);
+    public User execute(User userUpdatedReceive, long id) {
+        if (!this.repository.existsById(id)) return null;
+        UsersEntity updatedUser = this.repository.findById(id);
+        updatedUser.setName(userUpdatedReceive.getName());
+        updatedUser.setEmail(userUpdatedReceive.getEmail());
+        updatedUser.setPhone(userUpdatedReceive.getPhone());
+        this.repository.save(updatedUser);
         return this.mapper.mapToDomainsUser(updatedUser);
     }
 }

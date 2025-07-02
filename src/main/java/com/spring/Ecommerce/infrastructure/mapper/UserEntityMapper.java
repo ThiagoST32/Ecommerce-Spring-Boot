@@ -26,7 +26,7 @@ public class UserEntityMapper {
         );
     }
 
-    public User usersUpdated(UpdateUserDTO updateUserDTO){
+    public User mapUserToUpdatedUserDomain(UpdateUserDTO updateUserDTO){
         return new User(
                 updateUserDTO.name(),
                 updateUserDTO.email(),
@@ -52,6 +52,14 @@ public class UserEntityMapper {
                 domainUser.getEmail(),
                 domainUser.getPhone(),
                 domainUser.getTypeUser()
+        );
+    }
+
+    public UsersEntity mapToPersistenceUpdateUser(User domainUser){
+        return new UsersEntity(
+                domainUser.getName(),
+                domainUser.getEmail(),
+                domainUser.getPhone()
         );
     }
 
