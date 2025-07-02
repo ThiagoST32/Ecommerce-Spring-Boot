@@ -1,9 +1,9 @@
 package com.spring.Ecommerce.infrastructure.Repositories;
 
-import com.spring.Ecommerce.infrastructure.persistence.Users;
+import com.spring.Ecommerce.infrastructure.persistence.UsersEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserEntityRepository extends JpaRepository<Users, Long> {
-    Users findByDocument(String document);
-    Users findByEmail(String email);
+public interface UserEntityRepository extends JpaRepository<UsersEntity, Long> {
+    UsersEntity findByDocument(String document);
+    UsersEntity findByEmail(String email);
 }

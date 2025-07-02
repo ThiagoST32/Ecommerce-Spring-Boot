@@ -4,7 +4,7 @@ import com.spring.Ecommerce.core.entities.User;
 import com.spring.Ecommerce.core.gateway.UserGateway.UserUpdateGateway;
 import com.spring.Ecommerce.infrastructure.Repositories.UserEntityRepository;
 import com.spring.Ecommerce.infrastructure.mapper.UserEntityMapper;
-import com.spring.Ecommerce.infrastructure.persistence.Users;
+import com.spring.Ecommerce.infrastructure.persistence.UsersEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class UserUpdateImp implements UserUpdateGateway {
 
     @Override
     public User execute(User userUpdatedReceive) {
-        Users updatedUser = this.mapper.mapToPersistenceUser(userUpdatedReceive);
+        UsersEntity updatedUser = this.mapper.mapToPersistenceUser(userUpdatedReceive);
         this.repository.saveAndFlush(updatedUser);
         return this.mapper.mapToDomainsUser(updatedUser);
     }

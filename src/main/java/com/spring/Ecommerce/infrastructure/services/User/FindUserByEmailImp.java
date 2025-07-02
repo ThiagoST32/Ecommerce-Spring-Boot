@@ -4,7 +4,7 @@ import com.spring.Ecommerce.core.entities.User;
 import com.spring.Ecommerce.core.gateway.UserGateway.FindUserByEmailGateway;
 import com.spring.Ecommerce.infrastructure.Repositories.UserEntityRepository;
 import com.spring.Ecommerce.infrastructure.mapper.UserEntityMapper;
-import com.spring.Ecommerce.infrastructure.persistence.Users;
+import com.spring.Ecommerce.infrastructure.persistence.UsersEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class FindUserByEmailImp implements FindUserByEmailGateway {
     @Override
     public User execute(String email) {
         if (!email.contains("@")) throw new RuntimeException("Invalid document format. Document should be an email address.");
-        Users userGet = this.userEntityRepository.findByEmail(email);
+        UsersEntity userGet = this.userEntityRepository.findByEmail(email);
         return this.userEntityMapper.mapToDomainsUser(userGet);
     }
 
