@@ -21,6 +21,15 @@ public class User {
         this.typeUser = typeUser;
     }
 
+    public User(String name, String document, String email, String phone, TypeUser typeUser, UserCard userCard) {
+        this.name = name;
+        this.document = document;
+        this.email = email;
+        this.phone = phone;
+        this.typeUser = typeUser;
+        this.userCard = userCard;
+    }
+
     public User() {
     }
 
