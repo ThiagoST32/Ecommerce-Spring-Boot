@@ -2,6 +2,8 @@ package com.spring.Ecommerce.core.useCases.Products;
 
 import com.spring.Ecommerce.core.entities.Products;
 
+import java.util.List;
+
 public interface GetProductByNameUseCase {
-    Products execute(String nameProduct);
+    List<Products> execute(String nameProduct);
 }
