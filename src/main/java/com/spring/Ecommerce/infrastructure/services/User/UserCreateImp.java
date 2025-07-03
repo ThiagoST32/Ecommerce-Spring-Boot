@@ -25,7 +25,7 @@ public class UserCreateImp implements UserCreateGateway {
     @Override
     public User execute(User domainUser) {
         var userCard = this.userCardMapper.mapToPersistenceUserCard(domainUser.getUserCard());
-        UsersEntity persistenceUser = this.userEntityMapper.mapToPersistenceUser(domainUser, userCard);
+        var persistenceUser = this.userEntityMapper.mapToPersistenceUser(domainUser, userCard);
         UsersEntity savedUser = this.userEntityRepository.save(persistenceUser);
         return this.userEntityMapper.mapToDomainsUser(savedUser);
     }
