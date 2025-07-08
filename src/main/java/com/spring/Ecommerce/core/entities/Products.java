@@ -1,18 +1,18 @@
 package com.spring.Ecommerce.core.entities;
-
-
 import com.spring.Ecommerce.core.enums.TypeProduct;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public final class Products {
+public class Products {
     Long id;
     String nameProduct;
     String descriptionProduct;
     int quantityProduct;
     BigDecimal productValue;
     TypeProduct typeProduct;
+
+    public Products(){};
 
     public Products(String nameProduct, String descriptionProduct, int quantityProduct, BigDecimal productValue, TypeProduct typeProduct) {
         this.nameProduct = nameProduct;
@@ -21,29 +21,61 @@ public final class Products {
         this.productValue = productValue;
         this.typeProduct = typeProduct;
     }
+    public Products(Long id, String nameProduct, String descriptionProduct, int quantityProduct, BigDecimal productValue, TypeProduct typeProduct) {
+        this.id = id;
+        this.nameProduct = nameProduct;
+        this.descriptionProduct = descriptionProduct;
+        this.quantityProduct = quantityProduct;
+        this.productValue = productValue;
+        this.typeProduct = typeProduct;
+    }
 
-    public Long id() {
+    public Long getId() {
         return id;
     }
 
-    public String nameProduct() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNameProduct() {
         return nameProduct;
     }
 
-    public String descriptionProduct() {
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
+    }
+
+    public String getDescriptionProduct() {
         return descriptionProduct;
     }
 
-    public int quantityProduct() {
+    public void setDescriptionProduct(String descriptionProduct) {
+        this.descriptionProduct = descriptionProduct;
+    }
+
+    public int getQuantityProduct() {
         return quantityProduct;
     }
 
-    public BigDecimal productValue() {
+    public void setQuantityProduct(int quantityProduct) {
+        this.quantityProduct = quantityProduct;
+    }
+
+    public BigDecimal getProductValue() {
         return productValue;
     }
 
-    public TypeProduct typeProduct() {
+    public void setProductValue(BigDecimal productValue) {
+        this.productValue = productValue;
+    }
+
+    public TypeProduct getTypeProduct() {
         return typeProduct;
+    }
+
+    public void setTypeProduct(TypeProduct typeProduct) {
+        this.typeProduct = typeProduct;
     }
 
     @Override
