@@ -38,31 +38,31 @@ public class UsersController {
 
     @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody UsersEntityDTO userEntityDTO) {
-        User recieveUser = this.userEntityMapper.usersEntity(userEntityDTO);
+        var recieveUser = this.userEntityMapper.usersEntity(userEntityDTO);
         User savedUser = this.userCreateImp.execute(recieveUser);
-        return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     @GetMapping("/find/byDocument/{document}")
     public ResponseEntity<User> findUserByDocument(@PathVariable String document) {
-        return new ResponseEntity<User>(this.findUserByDocumentImp.execute(document), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.findUserByDocumentImp.execute(document), HttpStatus.FOUND);
     }
 
     @GetMapping("/find/byEmail/{email}")
     public ResponseEntity<User> findUserByEmail(@PathVariable String email) {
-        return new ResponseEntity<User>(this.findUserByEmailImp.execute(email), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.findUserByEmailImp.execute(email), HttpStatus.FOUND);
     }
 
     @GetMapping("/find/all")
     public ResponseEntity<List<User>> getAllUsers(){
-        return new ResponseEntity<List<User>>(this.getAllUsersImp.execute(), HttpStatus.OK);
+        return new ResponseEntity<>(this.getAllUsersImp.execute(), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<User> updateUser(@RequestBody UpdateUserDTO updateUserDTO, @PathVariable long id){
         User receiverUserToUpdate = this.userEntityMapper.mapUserToUpdatedUserDomain(updateUserDTO);
         var savedUserUpdated = this.userUpdateImp.execute(receiverUserToUpdate, id);
-        return new ResponseEntity<User>(savedUserUpdated, HttpStatus.OK);
+        return new ResponseEntity<>(savedUserUpdated, HttpStatus.OK);
     }
 
 }
