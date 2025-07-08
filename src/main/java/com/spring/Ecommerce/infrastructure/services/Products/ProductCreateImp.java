@@ -6,7 +6,9 @@ import com.spring.Ecommerce.infrastructure.Repositories.ProductRepository;
 import com.spring.Ecommerce.infrastructure.mapper.ProductMapper;
 import com.spring.Ecommerce.infrastructure.persistence.ProductEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProductCreateImp implements AddNewProductGateway {
 
     private final ProductRepository repository;
@@ -20,8 +22,8 @@ public class ProductCreateImp implements AddNewProductGateway {
 
     @Override
     public Products execute(Products products) {
-        var product = this.productMapper.mapToPersistenceProduct(products);
-        ProductEntity newProduct = this.repository.save(product);
+        ProductEntity newProduct = this.productMapper.mapToPersistenceProduct(products);
+        this.repository.save(newProduct);
         return this.productMapper.mapToDomainProduct(newProduct);
     }
 }

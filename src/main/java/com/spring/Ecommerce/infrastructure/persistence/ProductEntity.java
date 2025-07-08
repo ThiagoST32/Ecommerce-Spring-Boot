@@ -2,21 +2,20 @@ package com.spring.Ecommerce.infrastructure.persistence;
 
 import com.spring.Ecommerce.core.enums.TypeProduct;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
-@Data
-@Table(name = "tb_products")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "tb_products")
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String productName;
     private String descriptionProduct;
     private int quantityProduct;
@@ -31,3 +30,4 @@ public class ProductEntity {
         this.typeProduct = typeProduct;
     }
 }
+

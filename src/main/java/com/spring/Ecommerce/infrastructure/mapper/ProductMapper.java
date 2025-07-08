@@ -3,7 +3,9 @@ package com.spring.Ecommerce.infrastructure.mapper;
 import com.spring.Ecommerce.core.entities.Products;
 import com.spring.Ecommerce.infrastructure.dto.ProductDTO;
 import com.spring.Ecommerce.infrastructure.persistence.ProductEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductMapper {
 
     public Products mapToProductEntity(ProductDTO productDTO){
@@ -18,16 +20,17 @@ public class ProductMapper {
 
     public ProductEntity mapToPersistenceProduct(Products products){
         return new ProductEntity(
-                products.nameProduct(),
-                products.descriptionProduct(),
-                products.quantityProduct(),
-                products.productValue(),
-                products.typeProduct()
+                products.getNameProduct(),
+                products.getDescriptionProduct(),
+                products.getQuantityProduct(),
+                products.getProductValue(),
+                products.getTypeProduct()
         );
     }
 
     public Products mapToDomainProduct(ProductEntity productEntity){
         return new Products(
+                productEntity.getId(),
                 productEntity.getProductName(),
                 productEntity.getDescriptionProduct(),
                 productEntity.getQuantityProduct(),

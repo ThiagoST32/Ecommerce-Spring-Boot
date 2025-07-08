@@ -5,10 +5,11 @@ import com.spring.Ecommerce.core.enums.TypeUser;
 import com.spring.Ecommerce.core.gateway.ProductsGateway.DeleteProductGateway;
 import com.spring.Ecommerce.infrastructure.Repositories.ProductRepository;
 import com.spring.Ecommerce.infrastructure.Repositories.UserEntityRepository;
-import com.spring.Ecommerce.infrastructure.mapper.UserEntityMapper;
 import com.spring.Ecommerce.infrastructure.persistence.UsersEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DeleteProductImp implements DeleteProductGateway {
 
     private final ProductRepository productRepository;
@@ -22,9 +23,11 @@ public class DeleteProductImp implements DeleteProductGateway {
 
     @Override
     public String execute(Long id, String userName) {
-        if (!this.productRepository.existsById(id)) throw new RuntimeException(); //New HandlerException
+        if (!this.productRepository.existsById(id)) throw new RuntimeException("Product not exist!"); //New HandlerException
+        if (!this.userEntityRepository.existsByName(userName)) throw new RuntimeException("User not exist!"); //New HandlerException
         UsersEntity whoRequested = this.userEntityRepository.findByName(userName);
-        if (whoRequested.getTypeUser() != TypeUser.ADMIN) throw new RuntimeException(); //New HandlerException
-        return null;
+        if (whoRequested.getTypeUser() != TypeUser.ADMIN) throw new RuntimeException("You don´t have permission!"); //New HandlerException
+        this.productRepository.deleteById(id);
+        return "Deleted Successfully";
     }
 }

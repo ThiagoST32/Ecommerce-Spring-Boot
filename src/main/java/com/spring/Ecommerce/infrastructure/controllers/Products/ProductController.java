@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ap1/v1/users")
+@RequestMapping("/ap1/v1/products")
 public class ProductController {
     private final GetAllProductsImp getAllProductsImp;
     private final GetProductByNameImp getProductByNameImp;
@@ -21,9 +21,10 @@ public class ProductController {
     private final GetProductByTypeImp getProductByType;
     private final ProductCreateImp productCreateImp;
     private final ProductMapper productMapper;
+    private final DeleteProductImp deleteProductImp;
 
     @Autowired
-    public ProductController(GetAllProductsImp getAllProductsImp, GetProductByNameImp getProductByNameImp, GetProductByLowestPriceImp getProductByLowestPriceImp, GetProductByHighestPriceImp getProductByHighestPriceImp, GetProductByTypeImp getProductByType, ProductCreateImp productCreateImp, ProductMapper productMapper) {
+    public ProductController(GetAllProductsImp getAllProductsImp, GetProductByNameImp getProductByNameImp, GetProductByLowestPriceImp getProductByLowestPriceImp, GetProductByHighestPriceImp getProductByHighestPriceImp, GetProductByTypeImp getProductByType, ProductCreateImp productCreateImp, ProductMapper productMapper, DeleteProductImp deleteProductImp) {
         this.getAllProductsImp = getAllProductsImp;
         this.getProductByNameImp = getProductByNameImp;
         this.getProductByLowestPriceImp = getProductByLowestPriceImp;
@@ -31,10 +32,12 @@ public class ProductController {
         this.getProductByType = getProductByType;
         this.productCreateImp = productCreateImp;
         this.productMapper = productMapper;
+        this.deleteProductImp = deleteProductImp;
     }
 
     @PostMapping("/create")
     public ResponseEntity<Products> createProduct(@RequestBody ProductDTO productDTO) {
+        System.out.println(productDTO);
         var product = this.productMapper.mapToProductEntity(productDTO);
         Products createdProduct = this.productCreateImp.execute(product);
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
@@ -65,9 +68,9 @@ public class ProductController {
         return new ResponseEntity<>(this.getAllProductsImp.execute(), HttpStatus.FOUND);
     }
 
-    @DeleteMapping("/delete/{userName}/{id}")
-    public ResponseEntity<String> deleteProductById(@PathVariable Long id, String userName){
-        var teste = this.deleteProductById(id, userName);
-        return new ResponseEntity<>(teste.getBody(), HttpStatus.ACCEPTED);
+    @DeleteMapping("/delete/{id}/{userName}")
+    public ResponseEntity<String> deleteProductById(@PathVariable Long id, @PathVariable String userName){
+        System.out.println(userName);
+        return new ResponseEntity<>(this.deleteProductImp.execute(id, userName), HttpStatus.ACCEPTED);
     }
 }
