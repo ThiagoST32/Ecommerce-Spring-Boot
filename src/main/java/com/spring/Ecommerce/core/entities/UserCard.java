@@ -6,15 +6,13 @@ import java.util.Objects;
 public final class UserCard {
     Long id_card;
     int cardNumber;
-    int password;
     int securityCode;
     String cardHolderName;
     String expirationDate;
 
-    public UserCard(Long id_card, int cardNumber, int password, int securityCode, String cardHolderName, String expirationDate) {
+    public UserCard(Long id_card, int cardNumber, int securityCode, String cardHolderName, String expirationDate) {
         this.id_card = id_card;
         this.cardNumber = cardNumber;
-        this.password = password;
         this.securityCode = securityCode;
         this.cardHolderName = cardHolderName;
         this.expirationDate = expirationDate;
@@ -34,14 +32,6 @@ public final class UserCard {
 
     public void setCardNumber(int cardNumber) {
         this.cardNumber = cardNumber;
-    }
-
-    public int getPassword() {
-        return password;
-    }
-
-    public void setPassword(int password) {
-        this.password = password;
     }
 
     public int getSecurityCode() {
@@ -75,7 +65,6 @@ public final class UserCard {
         var that = (UserCard) obj;
         return Objects.equals(this.id_card, that.id_card) &&
                 Objects.equals(this.cardNumber, that.cardNumber) &&
-                Objects.equals(this.password, that.password) &&
                 this.securityCode == that.securityCode &&
                 Objects.equals(this.cardHolderName, that.cardHolderName) &&
                 Objects.equals(this.expirationDate, that.expirationDate);
@@ -83,7 +72,7 @@ public final class UserCard {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_card, cardNumber, password, securityCode, cardHolderName, expirationDate);
+        return Objects.hash(id_card, cardNumber, securityCode, cardHolderName, expirationDate);
     }
 
     @Override
@@ -91,7 +80,6 @@ public final class UserCard {
         return "UserCard[" +
                 "id_card=" + id_card + ", " +
                 "cardNumber=" + cardNumber + ", " +
-                "password=" + password + ", " +
                 "securityCode=" + securityCode + ", " +
                 "cardHolderName=" + cardHolderName + ", " +
                 "expirationDate=" + expirationDate + ']';

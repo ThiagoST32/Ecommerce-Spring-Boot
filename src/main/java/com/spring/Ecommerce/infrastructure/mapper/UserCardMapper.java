@@ -1,6 +1,5 @@
 package com.spring.Ecommerce.infrastructure.mapper;
 
-import com.spring.Ecommerce.core.entities.User;
 import com.spring.Ecommerce.core.entities.UserCard;
 import com.spring.Ecommerce.infrastructure.dto.UserCardDTO;
 import com.spring.Ecommerce.infrastructure.persistence.UserCardEntity;
@@ -11,7 +10,6 @@ public class UserCardMapper {
     public UserCardEntity userCard(UserCardDTO userCardDTO){
         UserCardEntity userCard = new UserCardEntity();
         userCard.setCardNumber(userCardDTO.cardNumber());
-        userCard.setPassword(userCardDTO.password());
         userCard.setSecurityCode(userCardDTO.securityCode());
         userCard.setExpirationDate(userCardDTO.expirationDate());
         return userCard;
@@ -21,7 +19,6 @@ public class UserCardMapper {
         return new UserCard(
                 cardEntity.getId_card(),
                 cardEntity.getCardNumber(),
-                cardEntity.getPassword(),
                 cardEntity.getSecurityCode(),
                 cardEntity.getCardHolderName(),
                 cardEntity.getExpirationDate()
@@ -31,7 +28,6 @@ public class UserCardMapper {
     public UserCardEntity mapToPersistenceUserCard(UserCard userCard){
         return new UserCardEntity(
                 userCard.getCardNumber(),
-                userCard.getPassword(),
                 userCard.getSecurityCode(),
                 userCard.getCardHolderName(),
                 userCard.getExpirationDate()
