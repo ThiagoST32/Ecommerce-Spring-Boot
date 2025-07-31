@@ -20,7 +20,7 @@ public class ShopCartEntity {
     @Column(nullable = false)
     private BigDecimal totalValue;
 
-    @ManyToOne
+    @OneToMany
     private List<ProductEntity> productsList;
 
     @Column(unique = true)

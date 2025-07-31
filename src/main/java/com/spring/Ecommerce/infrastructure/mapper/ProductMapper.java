@@ -7,6 +7,7 @@ import com.spring.Ecommerce.infrastructure.persistence.ProductEntity;
 import com.spring.Ecommerce.infrastructure.persistence.ShopCartEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -46,8 +47,15 @@ public class ProductMapper {
         );
     }
 
-    public Products mapToDomainProductTest(Optional<ProductEntity> productEntity) {
-        return new Products();
+    public Products mapToDomainProductTest(ProductEntity productEntity) {
+        return new Products(
+                productEntity.getId(),
+                productEntity.getProductName(),
+                productEntity.getDescriptionProduct(),
+                productEntity.getQuantityProduct(),
+                productEntity.getProductValue(),
+                productEntity.getTypeProduct()
+        );
     }
 
         public List<Products> mapToDomainProductList(ShopCartEntity shopCartList) {
@@ -57,11 +65,14 @@ public class ProductMapper {
         return shopCartList.getProductsList().stream().map(this::mapToDomainProduct).collect(Collectors.toList());
     }
 
-    public List<ProductEntity> mapToPersistenceProductList(ShopCart shopCartList) {
-        if (shopCartList == null || shopCartList.getProductsList() == null) {
+    public List<ProductEntity> mapToPersistenceProductList(Products products) {
+        if (products == null) {
             return Collections.emptyList();
         }
-        return shopCartList.getProductsList().stream().map(this::mapToPersistenceProduct).collect(Collectors.toList());
+        List<ProductEntity> teste = new ArrayList<>();
+        teste.add(this.mapToPersistenceProduct(products));
+//        teste.stream().map(this::mapToDomainProduct).forEachOrdered(Products.class);
+        return teste;
     }
 
 }

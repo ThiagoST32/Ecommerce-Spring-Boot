@@ -17,4 +17,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Query(value = "SELECT * FROM tb_products WHERE tb_products.type_product = :type", nativeQuery = true)
     List<ProductEntity>findByTypeProduct(@Param("type") int type);
+
+    @Query(value = "SELECT * FROM tb_products WHERE tb_products.id = :id", nativeQuery = true)
+    ProductEntity findProductById(@Param("id") Long id);
 }
