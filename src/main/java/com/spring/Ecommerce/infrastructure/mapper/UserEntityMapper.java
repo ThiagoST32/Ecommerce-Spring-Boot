@@ -65,12 +65,23 @@ public class UserEntityMapper {
 
     public User mapToDomainsUser(UsersEntity persistenceUser) {
         return new User(
+                persistenceUser.getId_user(),
                 persistenceUser.getName(),
                 persistenceUser.getDocument(),
                 persistenceUser.getEmail(),
                 persistenceUser.getPhone(),
                 persistenceUser.getTypeUser(),
                 this.cardMapper.mapToDomainsUserCard(persistenceUser.getUserCard())
+        );
+    }
+    public User mapToDomainsUsert(UsersEntity persistenceUser) {
+        return new User(
+                persistenceUser.getId_user(),
+                persistenceUser.getName(),
+                persistenceUser.getDocument(),
+                persistenceUser.getEmail(),
+                persistenceUser.getPhone(),
+                persistenceUser.getTypeUser()
         );
     }
 }

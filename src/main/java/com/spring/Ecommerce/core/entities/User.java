@@ -13,12 +13,31 @@ public class User {
     TypeUser typeUser;
     UserCard userCard;
 
+    public User(Long id, String name, String document, String email, String phone, TypeUser typeUser) {
+        this.id_user = id;
+        this.name = name;
+        this.document = document;
+        this.email = email;
+        this.phone = phone;
+        this.typeUser = typeUser;
+    }
+
     public User(String name, String document, String email, String phone, TypeUser typeUser) {
         this.name = name;
         this.document = document;
         this.email = email;
         this.phone = phone;
         this.typeUser = typeUser;
+    }
+
+    public User(Long id, String name, String document, String email, String phone, TypeUser typeUser, UserCard userCard) {
+        this.id_user = id;
+        this.name = name;
+        this.document = document;
+        this.email = email;
+        this.phone = phone;
+        this.typeUser = typeUser;
+        this.userCard = userCard;
     }
 
     public User(String name, String document, String email, String phone, TypeUser typeUser, UserCard userCard) {

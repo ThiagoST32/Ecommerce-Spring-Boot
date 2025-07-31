@@ -4,7 +4,10 @@ import com.spring.Ecommerce.core.entities.ShopCart;
 import com.spring.Ecommerce.infrastructure.dto.ShopCartDTO;
 import com.spring.Ecommerce.infrastructure.persistence.ShopCartEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ShopCartMapper {
 
     private final ProductMapper productMapper;
@@ -22,13 +25,13 @@ public class ShopCartMapper {
         );
     }
 
-    public ShopCartEntity mapToPersistenceShopCart(ShopCart shopCart) {
-        return new ShopCartEntity(
-                this.productMapper.mapToPersistenceProductList(shopCart),
-                shopCart.getTotalPrice(),
-                shopCart.getId_user()
-        );
-    }
+//    public ShopCartEntity mapToPersistenceShopCart(ShopCart shopCart) {
+//        return new ShopCartEntity(
+//                this.productMapper.mapToPersistenceProductList(shopCart),
+//                shopCart.getTotalPrice(),
+//                shopCart.getId_user()
+//        );
+//    }
 
     public ShopCart mapToDomainShopCart(ShopCartEntity shopCartEntity) {
         return new ShopCart(
