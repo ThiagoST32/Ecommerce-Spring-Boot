@@ -70,7 +70,6 @@ public class ProductController {
 
     @DeleteMapping("/delete/{id}/{userName}")
     public ResponseEntity<String> deleteProductById(@PathVariable Long id, @PathVariable String userName){
-        System.out.println(userName);
         return new ResponseEntity<>(this.deleteProductImp.execute(id, userName), HttpStatus.ACCEPTED);
     }
 }
