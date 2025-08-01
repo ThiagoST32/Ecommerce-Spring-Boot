@@ -7,19 +7,19 @@ public class ShopCart {
     private Long id_shopCart;
     private List<Products> productsList;
     private BigDecimal totalPrice;
-    private Long id_user;
+    private User user;
 
-    public ShopCart(Long id_shopCart, List<Products> products, BigDecimal totalPrice, Long id_user) {
+    public ShopCart(Long id_shopCart, List<Products> products, BigDecimal totalPrice, User user) {
         this.id_shopCart = id_shopCart;
         this.productsList = products;
         this.totalPrice = totalPrice;
-        this.id_user = id_user;
+        this.user = user;
     }
 
-    public ShopCart(List<Products> products, BigDecimal totalPrice, Long id_user) {
+    public ShopCart(List<Products> products, BigDecimal totalPrice, User user) {
         this.productsList = products;
         this.totalPrice = totalPrice;
-        this.id_user = id_user;
+        this.user = user;
     }
 
     public Long getId_shopCart() {
@@ -46,11 +46,11 @@ public class ShopCart {
         this.totalPrice = totalPrice;
     }
 
-    public Long getId_user() {
-        return id_user;
+    public User getUser() {
+        return user;
     }
 
-    public void setId_user(Long id_user) {
-        this.id_user = id_user;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

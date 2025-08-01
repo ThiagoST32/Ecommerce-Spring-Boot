@@ -4,24 +4,25 @@ import com.spring.Ecommerce.core.entities.ShopCart;
 import com.spring.Ecommerce.infrastructure.dto.ShopCartDTO;
 import com.spring.Ecommerce.infrastructure.persistence.ShopCartEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ShopCartMapper {
 
     private final ProductMapper productMapper;
+    private final UserEntityMapper userEntityMapper;
 
     @Autowired
-    public ShopCartMapper(ProductMapper productMapper) {
+    public ShopCartMapper(ProductMapper productMapper, UserEntityMapper userEntityMapper) {
         this.productMapper = productMapper;
+        this.userEntityMapper = userEntityMapper;
     }
 
     public ShopCart shopCartToEntity(ShopCartDTO shopCartDTO) {
         return new ShopCart(
                 shopCartDTO.productsList(),
                 shopCartDTO.totalValue(),
-                shopCartDTO.id_user()
+                this.userEntityMapper.mapToDomainsUser(shopCartDTO.user())
         );
     }
 
@@ -35,9 +36,10 @@ public class ShopCartMapper {
 
     public ShopCart mapToDomainShopCart(ShopCartEntity shopCartEntity) {
         return new ShopCart(
+                shopCartEntity.getId(),
                 this.productMapper.mapToDomainProductList(shopCartEntity),
                 shopCartEntity.getTotalValue(),
-                shopCartEntity.getId_user()
+                this.userEntityMapper.mapToDomainsUser(shopCartEntity.getUsersEntity())
         );
     }
 }

@@ -23,12 +23,25 @@ public class ShopCartEntity {
     @OneToMany
     private List<ProductEntity> productsList;
 
-    @Column(unique = true)
-    private Long id_user;
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private UsersEntity usersEntity;
 
-    public ShopCartEntity(List<ProductEntity> products, BigDecimal totalPrice, Long id_user) {
+    @Column(nullable = false)
+    private Integer quantity;
+
+    public ShopCartEntity(List<ProductEntity> products, BigDecimal totalPrice, UsersEntity user, Integer quantity) {
         this.productsList = products;
         this.totalValue = totalPrice;
-        this.id_user = id_user;
+        this.usersEntity = user;
+        this.quantity = quantity;
+    }
+
+    public ShopCartEntity(Long id, List<ProductEntity> products, BigDecimal totalPrice, UsersEntity user, Integer quantity) {
+        this.id = id;
+        this.productsList = products;
+        this.totalValue = totalPrice;
+        this.usersEntity = user;
+        this.quantity = quantity;
     }
 }
